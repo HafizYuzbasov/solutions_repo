@@ -173,103 +173,120 @@
 <div class="section" itemprop="articleBody">
 <h1 id="problem-2">Problem 2</h1>
 <h1 id="investigating-the-dynamics-of-a-forced-damped-pendulum">Investigating the Dynamics of a Forced Damped Pendulum</h1>
+<hr/>
 <h2 id="1-theoretical-foundation">1. Theoretical Foundation</h2>
-<p>The equation governing the motion of a forced damped pendulum is:</p>
+<p>The forced damped pendulum is a nonlinear oscillator that exhibits rich dynamical behavior. It is modeled by the second-order nonlinear differential equation:</p>
 <div class="arithmatex">\[
-\frac{d^2\theta}{dt^2} + b\frac{d\theta}{dt} + \frac{g}{L}\sin\theta = A\cos(\omega t)
+\frac{d^2\theta}{dt^2} + b\frac{d\theta}{dt} + \frac{g}{L} \sin\theta = A \cos(\omega t)
 \]</div>
-<p>Where:
-- \theta(t) is the angular displacement,
-- <span class="arithmatex">\(b\)</span> is the damping coefficient,
-- <span class="arithmatex">\(g\)</span> is gravitational acceleration,
-- <span class="arithmatex">\(L\)</span> is the length of the pendulum,
-- <span class="arithmatex">\(A\)</span> is the amplitude of the driving force,
-- <span class="arithmatex">\(\omega\)</span> is the frequency of the driving force.</p>
-<h3 id="small-angle-approximation">Small-Angle Approximation</h3>
-<p>For small angles, we can use the approximation:</p>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(\theta(t)\)</span>: Angular displacement (radians)</li>
+<li><span class="arithmatex">\(b\)</span>: Damping coefficient</li>
+<li><span class="arithmatex">\(g\)</span>: Gravitational acceleration</li>
+<li><span class="arithmatex">\(L\)</span>: Length of the pendulum</li>
+<li><span class="arithmatex">\(A\)</span>: Amplitude of the driving force</li>
+<li><span class="arithmatex">\(\omega\)</span>: Frequency of the driving force</li>
+</ul>
+<p>This equation combines restoring force (<span class="arithmatex">\(\sin\theta\)</span>), linear damping (<span class="arithmatex">\(b \, d\theta/dt\)</span>), and a periodic driving force (<span class="arithmatex">\(A \cos(\omega t)\)</span>).</p>
+<h3 id="11-linearization-for-small-angles">1.1 Linearization for Small Angles</h3>
+<p>For small oscillations, where <span class="arithmatex">\(\theta \ll 1\)</span>, we can use the approximation:</p>
 <div class="arithmatex">\[
 \sin\theta \approx \theta
 \]</div>
-<p>Then the linearized equation becomes:</p>
+<p>The equation becomes:</p>
 <div class="arithmatex">\[
 \frac{d^2\theta}{dt^2} + b\frac{d\theta}{dt} + \frac{g}{L}\theta = A\cos(\omega t)
 \]</div>
-<p>This is a second-order linear differential equation with forcing and damping, analogous to the driven damped harmonic oscillator. The solution generally includes:
-- A transient component (decaying),
-- A steady-state component with the same frequency as the driving force.</p>
-<h3 id="resonance">Resonance</h3>
-<p>Resonance occurs when the driving frequency <span class="arithmatex">\(<span class="arithmatex">\(\omega\)</span>\)</span> is close to the natural frequency:</p>
+<p>This is the classic linear driven damped harmonic oscillator equation.</p>
+<h3 id="12-resonance-behavior">1.2 Resonance Behavior</h3>
+<p>In steady-state, the solution for <span class="arithmatex">\(\theta(t)\)</span> takes the form:</p>
 <div class="arithmatex">\[
-\omega_0 = \sqrt{\frac{g}{L}}
+\theta(t) = \Theta \cos(\omega t - \delta)
 \]</div>
-<p>The response amplitude increases dramatically if damping is small.</p>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(\Theta\)</span>: Amplitude of oscillation</li>
+<li><span class="arithmatex">\(\delta\)</span>: Phase shift</li>
+</ul>
+<p>The amplitude is given by:</p>
+<div class="arithmatex">\[
+\Theta(\omega) = \frac{A}{\sqrt{ \left( \frac{g}{L} - \omega^2 \right)^2 + (b\omega)^2 }}
+\]</div>
+<p>This amplitude is maximized when <span class="arithmatex">\(\omega \approx \sqrt{g/L}\)</span>, the natural frequency of the undamped pendulum, i.e., <strong>resonance</strong> occurs when the driving frequency matches the natural frequency.</p>
 <hr/>
 <h2 id="2-analysis-of-dynamics">2. Analysis of Dynamics</h2>
-<p>To explore full nonlinear behavior, including chaotic dynamics, we must numerically integrate the original equation without small-angle approximation.</p>
-<p>The effects of parameters:
-- <strong>Damping</strong> (<span class="arithmatex">\(b\)</span>): controls how quickly energy is lost.
-- <strong>Driving Amplitude</strong> (<span class="arithmatex">\(A\)</span>): higher amplitude may trigger chaotic responses.
-- <strong>Driving Frequency</strong> (<span class="arithmatex">\(\omega\)</span>): near-resonant values increase system energy.</p>
-<p><strong>Transitions:</strong>
-- <strong>Low <span class="arithmatex">\(A\)</span> and <span class="arithmatex">\(b\)</span></strong>: periodic motion.
-- <strong>Moderate <span class="arithmatex">\(A\)</span></strong>: quasiperiodic.
-- <strong>High <span class="arithmatex">\(A\)</span></strong>: chaotic motion.</p>
+<p>Unlike the linear approximation, the full nonlinear equation (with <span class="arithmatex">\(\sin\theta\)</span> intact) exhibits complex behavior including:</p>
+<ul>
+<li><strong>Periodic motion</strong></li>
+<li><strong>Quasiperiodic motion</strong></li>
+<li><strong>Chaotic behavior</strong></li>
+</ul>
+<p>These depend sensitively on parameters <span class="arithmatex">\(A\)</span>, <span class="arithmatex">\(b\)</span>, and <span class="arithmatex">\(\omega\)</span>.</p>
+<h3 id="21-parameter-effects">2.1 Parameter Effects</h3>
+<ul>
+<li><strong>Damping (<span class="arithmatex">\(b\)</span>)</strong>: High damping suppresses motion; low damping allows oscillations and chaos.</li>
+<li><strong>Driving Amplitude (<span class="arithmatex">\(A\)</span>)</strong>: Larger <span class="arithmatex">\(A\)</span> can push the system into chaos.</li>
+<li><strong>Driving Frequency (<span class="arithmatex">\(\omega\)</span>)</strong>: Influences resonance and period-doubling bifurcations.</li>
+</ul>
+<h3 id="22-chaos-and-nonlinearity">2.2 Chaos and Nonlinearity</h3>
+<p>For sufficiently large <span class="arithmatex">\(A\)</span> and small <span class="arithmatex">\(b\)</span>, the motion becomes unpredictable. Small changes in initial conditions result in drastically different outcomes—a hallmark of <strong>chaos</strong>.</p>
+<ul>
+<li><strong>Phase diagrams</strong> show the evolution of <span class="arithmatex">\((\theta, \dot{\theta})\)</span>.</li>
+<li><strong>Poincaré sections</strong> sample the system at regular intervals (e.g., each period <span class="arithmatex">\(T = 2\pi/\omega\)</span>).</li>
+<li><strong>Bifurcation diagrams</strong> show how the long-term behavior changes with <span class="arithmatex">\(A\)</span> or <span class="arithmatex">\(\omega\)</span>.</li>
+</ul>
 <hr/>
 <h2 id="3-practical-applications">3. Practical Applications</h2>
-<p>The forced damped pendulum appears in:
-- Energy harvesting systems (vibrating beams or pendulums),
-- Suspension bridges (wind-induced oscillations),
-- Electrical analogs like RLC circuits,
-- Human movement dynamics (e.g., arm swinging),
-- Earth’s climate cycles (e.g., Milankovitch cycles).</p>
+<p>The forced damped pendulum is a model for many real systems:</p>
+<ul>
+<li><strong>Energy harvesting</strong>: Devices that convert mechanical vibration into electrical energy.</li>
+<li><strong>Mechanical systems</strong>: Bridges and buildings under wind or seismic driving.</li>
+<li><strong>Electrical analogs</strong>: Driven RLC circuits exhibit identical mathematical behavior.</li>
+<li><strong>Biological systems</strong>: Models of cardiac rhythms and walking gait.</li>
+</ul>
 <hr/>
-<h2 id="4-implementation">4. Implementation</h2>
-<p>Below is the Python simulation using the Runge-Kutta method for solving the nonlinear ODE.</p>
+<h2 id="4-computational-implementation">4. Computational Implementation</h2>
+<p>To simulate the full nonlinear dynamics, we solve the second-order ODE numerically using the Runge-Kutta method.</p>
+<h3 id="41-python-code">4.1 Python Code</h3>
 <pre><code class="language-python">import numpy as np
 import matplotlib.pyplot as plt
 from scipy.integrate import solve_ivp
 
 # Parameters
-g = 9.81       # gravity (m/s^2)
-L = 1.0        # pendulum length (m)
-b = 0.2        # damping coefficient
-A = 1.2        # driving force amplitude
-omega = 2.0    # driving frequency (rad/s)
+g = 9.81      # gravity (m/s^2)
+L = 1.0       # length of pendulum (m)
+b = 0.5       # damping coefficient
+A = 1.2       # driving amplitude
+omega = 2/3   # driving frequency
 
-# Time setup
-t_span = (0, 50)
-t_eval = np.linspace(*t_span, 10000)
+# Time span
+t_span = (0, 100)
+t_eval = np.linspace(*t_span, 5000)
 
-# Differential equation system
+# ODE function
 def pendulum(t, y):
-    theta, omega_ = y
-    dtheta_dt = omega_
-    domega_dt = -b * omega_ - (g / L) * np.sin(theta) + A * np.cos(omega * t)
+    theta, omega_theta = y
+    dtheta_dt = omega_theta
+    domega_dt = -b * omega_theta - (g/L) * np.sin(theta) + A * np.cos(omega * t)
     return [dtheta_dt, domega_dt]
 
-# Initial conditions: [theta_0, omega_0]
-y0 = [0.1, 0.0]
+# Initial conditions
+theta0 = 0.2
+omega0 = 0.0
+sol = solve_ivp(pendulum, t_span, [theta0, omega0], t_eval=t_eval)
 
-# Solve ODE
-sol = solve_ivp(pendulum, t_span, y0, t_eval=t_eval, method='RK45')
-
-# Extract results
-theta = sol.y[0]
-omega_ = sol.y[1]
-time = sol.t
-
-# Plot results
-plt.figure(figsize=(12, 6))
-plt.plot(time, theta, label='Angular Displacement (θ)')
-plt.xlabel('Time (s)')
-plt.ylabel('θ (rad)')
-plt.title('Forced Damped Pendulum Motion')
+# Plot time series
+plt.figure(figsize=(10, 4))
+plt.plot(sol.t, sol.y[0])
+plt.title("Forced Damped Pendulum: Angular Displacement vs Time")
+plt.xlabel("Time (s)")
+plt.ylabel("Angle (rad)")
 plt.grid(True)
-plt.legend()
 plt.tight_layout()
 plt.show()
 </code></pre>
-<p><img alt="alt text" src="../image-1.png"/></p>
+<p><img alt="alt text" src="../image-3.png"/></p>
 </div>
 </div><footer>
 <div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
