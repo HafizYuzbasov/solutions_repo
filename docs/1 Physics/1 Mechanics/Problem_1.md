@@ -1,96 +1,100 @@
 # Problem 1
 
-# Investigating the Range as a Function of the Angle of Projection
+# Problem 1: Investigating the Range as a Function of the Angle of Projection
 
-## Theoretical Foundation
+## 1. Theoretical Foundation
 
-### Deriving the Governing Equations of Motion
+Projectile motion is governed by Newton's laws and can be modeled by decomposing the motion into horizontal and vertical components.
 
-To investigate the range as a function of the angle of projection, we begin by analyzing the motion of a projectile under the influence of gravity, assuming no air resistance. The governing equations of motion can be derived from Newton's second law of motion.
+Given:
+- Initial velocity: $$v_0$$
+- Angle of projection: $$\theta$$
+- Gravitational acceleration: $$g$$
 
-Consider the following:
+The equations of motion in a vacuum and with no air resistance are:
 
-1. **Horizontal Motion**: In the absence of horizontal forces, the horizontal velocity remains constant throughout the projectile’s flight.
+- Horizontal displacement:
+  $$
+  x(t) = v_0 \cos(\theta) \cdot t
+  $$
 
-   The horizontal displacement \( x(t) \) as a function of time \( t \) is given by:
-   
-   $$
-   x(t) = v_0 \cos(\theta) \cdot t
-   $$
-   
-   where:
-   - \( v_0 \) is the initial velocity of the projectile
-   - \( \theta \) is the angle of projection
-   - \( t \) is the time elapsed
-   
-2. **Vertical Motion**: In the vertical direction, the only force acting is gravity. The vertical displacement \( y(t) \) is described by the second-order differential equation:
-   
-   $$
-   \frac{d^2 y}{dt^2} = -g
-   $$
+- Vertical displacement:
+  $$
+  y(t) = v_0 \sin(\theta) \cdot t - \frac{1}{2} g t^2
+  $$
 
-   Integrating once gives the vertical velocity:
-
-   $$
-   \frac{dy}{dt} = v_0 \sin(\theta) - g \cdot t
-   $$
-
-   Integrating again to find the vertical displacement:
-
-   $$
-   y(t) = v_0 \sin(\theta) \cdot t - \frac{1}{2} g \cdot t^2
-   $$
-
-### Time of Flight
-
-To find the time of flight, we solve for \( t \) when the projectile lands, i.e., when \( y(t) = 0 \). From the vertical displacement equation:
+The time of flight is obtained by solving $$y(t) = 0$$:
 
 $$
-v_0 \sin(\theta) \cdot t - \frac{1}{2} g \cdot t^2 = 0
+t_{total} = \frac{2 v_0 \sin(\theta)}{g}
 $$
 
-Factoring out \( t \), we get:
+Using this, the **range** (horizontal distance traveled before hitting the ground) is:
 
 $$
-t \left( v_0 \sin(\theta) - \frac{1}{2} g \cdot t \right) = 0
+R = v_0 \cos(\theta) \cdot t_{total} = \frac{v_0^2 \sin(2\theta)}{g}
 $$
 
-The nontrivial solution is:
+This equation shows a **nonlinear** dependence on angle, with a **maximum range at** $$\theta = 45^\circ$$ for ideal conditions.
+
+---
+
+## 2. Analysis of the Range
+
+We analyze the range $$R$$ as a function of the angle of projection $$\theta$$ using:
 
 $$
-t = \frac{2 v_0 \sin(\theta)}{g}
+R(\theta) = \frac{v_0^2 \sin(2\theta)}{g}
 $$
 
-Thus, the time of flight \( T \) is:
+- **Max range:** Occurs when $$\sin(2\theta) = 1$$, i.e., $$\theta = 45^\circ$$.
+- **Effect of velocity:** Range increases quadratically with initial velocity.
+- **Effect of gravity:** Range decreases inversely with gravitational acceleration.
 
-$$
-T = \frac{2 v_0 \sin(\theta)}{g}
-$$
+---
 
-### Horizontal Range
+## 3. Practical Applications
 
-The horizontal range \( R \) is the horizontal distance the projectile travels during its flight. Using the time of flight, we can calculate \( R \):
+In real-world situations:
+- **Air resistance** reduces range and shifts optimal angle < $$45^\circ$$.
+- **Uneven terrain** alters landing height, changing total time of flight.
+- **Wind** can either assist or hinder horizontal displacement.
+- Applications include sports (e.g., basketball, soccer), military ballistics, and spaceflight trajectory planning.
 
-$$
-R = x(T) = v_0 \cos(\theta) \cdot T
-$$
+---
 
-Substituting for \( T \):
+## 4. Implementation
 
-$$
-R = v_0 \cos(\theta) \cdot \frac{2 v_0 \sin(\theta)}{g}
-$$
+Below is a Python implementation to visualize how the range depends on the angle of projection.
 
-Simplifying:
+### Python Code
 
-$$
-R = \frac{v_0^2 \sin(2\theta)}{g}
-$$
+```python
+import numpy as np
+import matplotlib.pyplot as plt
 
-### Variations in Initial Conditions
+# Constants
+g = 9.81  # m/s^2
+v0 = 30   # m/s (initial velocity)
 
-The range \( R \) depends on both the initial velocity \( v_0 \) and the angle of projection \( \theta \). By analyzing this equation, we can see how variations in these initial conditions lead to a family of solutions:
+# Angle values from 0° to 90°
+angles_deg = np.linspace(0, 90, 500)
+angles_rad = np.radians(angles_deg)
 
-1. **Initial Velocity \( v_0 \)**: A higher initial velocity leads to a larger range. Specifically, the range increases with the square of the initial velocity, \( v_0^2 \).
+# Compute range for each angle
+ranges = (v0**2 * np.sin(2 * angles_rad)) / g
 
-2. **Angle of Projection \( \theta \)**: The term \( \sin(2\theta) \) in the
+# Plotting
+plt.figure(figsize=(10, 6))
+plt.plot(angles_deg, ranges, color='blue', label=f'v0 = {v0} m/s')
+plt.axvline(45, color='red', linestyle='--', label='Max range at 45°')
+plt.title('Projectile Range vs Angle of Projection', fontsize=16)
+plt.xlabel('Angle (degrees)', fontsize=14)
+plt.ylabel('Range (meters)', fontsize=14)
+plt.grid(True, linestyle='--', alpha=0.7)
+plt.legend()
+plt.tight_layout()
+plt.show()
+```
+
+![alt text](image.png)
