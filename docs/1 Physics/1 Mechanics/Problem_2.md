@@ -53,14 +53,14 @@ The response amplitude increases dramatically if damping is small.
 To explore full nonlinear behavior, including chaotic dynamics, we must numerically integrate the original equation without small-angle approximation.
 
 The effects of parameters:
-- **Damping** ($$b$$): controls how quickly energy is lost.
-- **Driving Amplitude** ($$A$$): higher amplitude may trigger chaotic responses.
-- **Driving Frequency** ($$\omega$$): near-resonant values increase system energy.
+- **Damping** ($b$): controls how quickly energy is lost.
+- **Driving Amplitude** ($A$): higher amplitude may trigger chaotic responses.
+- **Driving Frequency** ($\omega$): near-resonant values increase system energy.
 
 **Transitions:**
-- **Low $$A$$ and $$b$$**: periodic motion.
-- **Moderate $$A$$**: quasiperiodic.
-- **High $$A$$**: chaotic motion.
+- **Low $A$ and $b$**: periodic motion.
+- **Moderate $A$**: quasiperiodic.
+- **High $A$**: chaotic motion.
 
 ---
 
