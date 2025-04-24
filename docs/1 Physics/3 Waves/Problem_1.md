@@ -145,5 +145,4 @@ The coherence of sources ensures stable patterns. Incoherence would blur the int
 ##  Conclusion
 
 This study provides both a mathematical and visual understanding of **wave interference** using multiple coherent point sources arranged on regular polygons. Such models are foundational for deeper insights in physics and engineering disciplines.
-
----
+ 
