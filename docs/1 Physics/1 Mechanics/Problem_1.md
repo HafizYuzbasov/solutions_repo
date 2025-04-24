@@ -119,17 +119,3 @@ This model does not account for:
 
 Extensions can include solving differential equations with drag force:
 $$ \vec{F} = -kv\vec{v} \quad \text{(linear drag)} $$
-Using numerical solvers like `scipy.integrate.solve_ivp`.
-
-## COLAB Links
-
-- [Projectile Motion: Angle Variation](https://colab.research.google.com/drive/your-link-1)
-- [Projectile Motion: Velocity Variation](https://colab.research.google.com/drive/your-link-2)
-
-*(Please replace "your-link-1" and "your-link-2" with actual shared Colab URLs.)*
-
-## Summary
-
-This notebook illustrates a foundational physics model through both theoretical derivations and computational simulations. It highlights how simple differential equations can model complex physical systems and how varying parameters leads to a deeper understanding of motion under gravity.
-
-
