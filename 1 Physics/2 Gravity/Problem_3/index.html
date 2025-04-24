@@ -172,6 +172,138 @@
 <div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
 <div class="section" itemprop="articleBody">
 <h1 id="problem-3">Problem 3</h1>
+<p>Here is a complete academic solution in <strong>Markdown format</strong> using <strong>LaTeX-style dollar signs</strong> for all equations. This includes the explanation, physical modeling, and a Python simulation for <strong>Problem 3: Payload Trajectories from Near-Earth Orbit</strong>.</p>
+<hr/>
+<h1 id="trajectories-of-a-freely-released-payload-near-earth">Trajectories of a Freely Released Payload Near Earth</h1>
+<h2 id="problem-statement">Problem Statement</h2>
+<p>We examine the motion of a payload launched from an altitude of <strong>800 km</strong> above Earth's surface with various initial velocities. The goal is to determine whether the object falls back, orbits, or escapes Earth depending on initial conditions.</p>
+<hr/>
+<h2 id="1-assumptions-and-physical-background">1. Assumptions and Physical Background</h2>
+<ul>
+<li><strong>Earth's Radius</strong>: <span class="arithmatex">\(R_E = 6.37 \times 10^6 \, \text{m}\)</span></li>
+<li><strong>Initial altitude</strong>: <span class="arithmatex">\(h = 800 \, \text{km} = 8.0 \times 10^5 \, \text{m}\)</span></li>
+<li><strong>Total radial distance</strong>: <span class="arithmatex">\(r_0 = R_E + h = 7.17 \times 10^6 \, \text{m}\)</span></li>
+<li><strong>Gravitational Parameter</strong>: <span class="arithmatex">\(\mu = G M_E \approx 3.986 \times 10^{14} \, \text{m}^3/\text{s}^2\)</span></li>
+</ul>
+<p>Using Newton's law of gravitation, the equation of motion is:</p>
+<div class="arithmatex">\[
+\vec{a} = -\frac{GM_E}{r^3} \vec{r}
+\]</div>
+<p>This second-order differential equation describes how gravity pulls the object toward Earth. The simulation integrates this numerically using time-stepping.</p>
+<hr/>
+<h2 id="2-orbital-behavior-vs-velocity">2. Orbital Behavior vs. Velocity</h2>
+<p>Initial velocities tested:</p>
+<div class="arithmatex">\[
+v_0 = [5,\, 5.5,\, 6,\, 6.5,\, \ldots,\, 13] \, \text{km/s}
+\]</div>
+<p>These result in:
+- <strong><span class="arithmatex">\(v &lt; 7.91\)</span> km/s</strong>: Suborbital (falls back)
+- <strong><span class="arithmatex">\(v = 7.91\)</span> km/s</strong>: Circular orbit
+- <strong><span class="arithmatex">\(7.91 &lt; v &lt; 11.2\)</span> km/s</strong>: Elliptical orbit
+- <strong><span class="arithmatex">\(v = 11.2\)</span> km/s</strong>: Escape velocity
+- <strong><span class="arithmatex">\(v &gt; 11.2\)</span> km/s</strong>: Hyperbolic trajectory</p>
+<hr/>
+<h2 id="3-python-simulation-code">3. Python Simulation Code</h2>
+<pre><code class="language-python">import numpy as np
+import matplotlib.pyplot as plt
+
+# Constants
+G = 6.67430e-11         # gravitational constant
+M = 5.972e24            # mass of Earth in kg
+mu = G * M              # standard gravitational parameter
+R_earth = 6.37e6        # Earth's radius in meters
+altitude = 800e3        # altitude in meters
+r0 = R_earth + altitude
+
+# Time setup
+dt = 1                  # time step in seconds
+T = 10000               # total time
+steps = int(T / dt)
+
+# Initial velocities in m/s
+v0_list = np.arange(5e3, 13.5e3, 0.5e3)
+
+# Plot setup
+fig, ax = plt.subplots(figsize=(8, 8))
+
+# Draw Earth
+earth = plt.Circle((0, 0), R_earth, color='blue', alpha=0.3)
+ax.add_artist(earth)
+
+for v0 in v0_list:
+    pos = np.array([r0, 0.0])
+    vel = np.array([0.0, v0])
+    trajectory_x = []
+    trajectory_y = []
+
+    for _ in range(steps):
+        r = np.linalg.norm(pos)
+        acc = -mu * pos / r**3
+        vel += acc * dt
+        pos += vel * dt
+        trajectory_x.append(pos[0])
+        trajectory_y.append(pos[1])
+        if r &lt; R_earth:
+            break
+
+    ax.plot(trajectory_x, trajectory_y, label=f'{v0/1000:.1f} km/s')
+
+# Plot formatting
+ax.set_title('Trajectories of Payload from 800 km Altitude')
+ax.set_xlabel('x (m)')
+ax.set_ylabel('y (m)')
+ax.set_aspect('equal')
+ax.set_xlim(-1.5e7, 1.5e7)
+ax.set_ylim(-1.5e7, 1.5e7)
+ax.legend(loc='upper right', fontsize='small')
+plt.grid(True)
+plt.tight_layout()
+plt.show()
+</code></pre>
+<h2 id="_1"><img alt="alt text" src="../image-3.png"/></h2>
+<h2 id="4-analysis-of-results">4. Analysis of Results</h2>
+<table>
+<thead>
+<tr>
+<th>Initial Velocity (km/s)</th>
+<th>Trajectory Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>5.0–7.9</td>
+<td>Suborbital</td>
+</tr>
+<tr>
+<td>7.91</td>
+<td>Circular Orbit</td>
+</tr>
+<tr>
+<td>8.0–11.1</td>
+<td>Elliptical Orbit</td>
+</tr>
+<tr>
+<td>11.2</td>
+<td>Escape Trajectory</td>
+</tr>
+<tr>
+<td>11.5–13.0</td>
+<td>Hyperbolic Escape</td>
+</tr>
+</tbody>
+</table>
+<hr/>
+<h2 id="5-applications-and-implications">5. Applications and Implications</h2>
+<p>Understanding these trajectories is essential for:</p>
+<ul>
+<li>Satellite insertion into <strong>LEO</strong> or <strong>GEO</strong></li>
+<li><strong>Planetary missions</strong> (e.g., Mars rovers)</li>
+<li>Designing <strong>return capsules</strong> or <strong>interstellar probes</strong></li>
+</ul>
+<hr/>
+<h2 id="conclusion">Conclusion</h2>
+<p>The velocity at which an object is released significantly determines its trajectory: orbital, escape, or fall-back. These principles form the backbone of trajectory planning in space missions and highlight the delicate balance required for orbital mechanics.</p>
+<hr/>
 </div>
 </div><footer>
 <div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
