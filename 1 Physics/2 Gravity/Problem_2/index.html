@@ -172,6 +172,166 @@
 <div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
 <div class="section" itemprop="articleBody">
 <h1 id="problem-2">Problem 2</h1>
+<h1 id="escape-and-cosmic-velocities">Escape and Cosmic Velocities</h1>
+<h2 id="introduction">Introduction</h2>
+<p>Cosmic velocities define the speed thresholds required to:</p>
+<ol>
+<li><strong>Stay in orbit</strong> – First Cosmic Velocity</li>
+<li><strong>Escape the planet's gravity</strong> – Second Cosmic Velocity</li>
+<li><strong>Escape the solar system</strong> – Third Cosmic Velocity</li>
+</ol>
+<p>These principles are fundamental in spaceflight mechanics and interplanetary mission planning.</p>
+<hr/>
+<h2 id="1-derivation-of-cosmic-velocities">1. Derivation of Cosmic Velocities</h2>
+<h3 id="first-cosmic-velocity-v_1">🛰 First Cosmic Velocity (<span class="arithmatex">\(v_1\)</span>)</h3>
+<p>The first cosmic velocity is the <strong>minimum speed needed to orbit a celestial body</strong> near its surface in a circular orbit.</p>
+<p>From Newton’s gravitational force and centripetal force balance:</p>
+<div class="arithmatex">\[
+\frac{G M m}{R^2} = \frac{m v_1^2}{R}
+\]</div>
+<p>Simplifying:</p>
+<div class="arithmatex">\[
+v_1 = \sqrt{\frac{G M}{R}}
+\]</div>
+<hr/>
+<h3 id="second-cosmic-velocity-v_2">Second Cosmic Velocity (<span class="arithmatex">\(v_2\)</span>)</h3>
+<p>This is the <strong>escape velocity</strong>, i.e., the velocity needed to completely escape the gravitational field of a planet.</p>
+<p>From conservation of energy:</p>
+<div class="arithmatex">\[
+\frac{1}{2} m v_2^2 = \frac{G M m}{R}
+\]</div>
+<p>Therefore:</p>
+<div class="arithmatex">\[
+v_2 = \sqrt{\frac{2 G M}{R}} = \sqrt{2} \cdot v_1
+\]</div>
+<hr/>
+<h3 id="third-cosmic-velocity-v_3">Third Cosmic Velocity (<span class="arithmatex">\(v_3\)</span>)</h3>
+<p>This is the <strong>minimum speed required to escape the Sun's gravitational pull</strong> from Earth’s orbit.</p>
+<p>Using Pythagoras-like relation:</p>
+<div class="arithmatex">\[
+v_3 = \sqrt{v_{\text{esc, Earth}}^2 + v_{\text{orbit around Sun}}^2}
+\]</div>
+<p>Where:
+- <span class="arithmatex">\(v_{\text{esc, Earth}} \approx 11.2 \, \text{km/s}\)</span>
+- <span class="arithmatex">\(v_{\text{orbit around Sun}} \approx 29.78 \, \text{km/s}\)</span></p>
+<p>Then:</p>
+<div class="arithmatex">\[
+v_3 \approx \sqrt{(11.2)^2 + (29.78)^2} \approx 42.1 \, \text{km/s}
+\]</div>
+<hr/>
+<h2 id="2-earth-cosmic-velocity-values">2. Earth Cosmic Velocity Values</h2>
+<table>
+<thead>
+<tr>
+<th>Velocity Type</th>
+<th>Formula</th>
+<th>Value (Earth)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>First Cosmic Velocity</td>
+<td><span class="arithmatex">\(v_1 = \sqrt{\frac{G M}{R}}\)</span></td>
+<td><span class="arithmatex">\(\approx 7.91\)</span> km/s</td>
+</tr>
+<tr>
+<td>Second Cosmic Velocity</td>
+<td><span class="arithmatex">\(v_2 = \sqrt{\frac{2 G M}{R}}\)</span></td>
+<td><span class="arithmatex">\(\approx 11.2\)</span> km/s</td>
+</tr>
+<tr>
+<td>Third Cosmic Velocity</td>
+<td><span class="arithmatex">\(v_3 = \sqrt{v_1^2 + v_{\text{orbit}}^2}\)</span></td>
+<td><span class="arithmatex">\(\approx 42.1\)</span> km/s</td>
+</tr>
+</tbody>
+</table>
+<hr/>
+<h2 id="3-comparison-with-moon-mars-jupiter">3. Comparison with Moon, Mars, Jupiter</h2>
+<pre><code class="language-python">import numpy as np
+import matplotlib.pyplot as plt
+
+# Constants
+G = 6.67430e-11  # Gravitational constant in m^3 kg^-1 s^-2
+
+# Mass (kg) and Radius (m) for each body
+bodies = {
+    "Moon":     [7.35e22, 1.74e6],
+    "Earth":    [5.97e24, 6.37e6],
+    "Mars":     [6.42e23, 3.39e6],
+    "Jupiter":  [1.90e27, 6.99e7]
+}
+
+# Calculate v1 and v2 for each body
+results = {}
+for name, (M, R) in bodies.items():
+    v1 = np.sqrt(G * M / R) / 1000  # Convert to km/s
+    v2 = np.sqrt(2 * G * M / R) / 1000
+    results[name] = (v1, v2)
+
+# Prepare data
+labels = list(results.keys())
+v1_vals = [results[body][0] for body in labels]
+v2_vals = [results[body][1] for body in labels]
+
+# Plot
+x = np.arange(len(labels))
+width = 0.35
+
+fig, ax = plt.subplots(figsize=(10, 6))
+ax.bar(x - width/2, v1_vals, width, label='v1 (Orbital)')
+ax.bar(x + width/2, v2_vals, width, label='v2 (Escape)')
+
+ax.set_ylabel('Velocity (km/s)')
+ax.set_title('Cosmic Velocities for Celestial Bodies')
+ax.set_xticks(x)
+ax.set_xticklabels(labels)
+ax.legend()
+plt.grid(True)
+plt.tight_layout()
+plt.show()
+</code></pre>
+<h2 id="_1"><img alt="alt text" src="../image-2.png"/></h2>
+<h3 id="summary-table">Summary Table</h3>
+<table>
+<thead>
+<tr>
+<th>Body</th>
+<th><span class="arithmatex">\(v_1\)</span> (km/s)</th>
+<th><span class="arithmatex">\(v_2\)</span> (km/s)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Moon</td>
+<td><span class="arithmatex">\(\approx 1.68\)</span></td>
+<td><span class="arithmatex">\(\approx 2.38\)</span></td>
+</tr>
+<tr>
+<td>Earth</td>
+<td><span class="arithmatex">\(\approx 7.91\)</span></td>
+<td><span class="arithmatex">\(\approx 11.2\)</span></td>
+</tr>
+<tr>
+<td>Mars</td>
+<td><span class="arithmatex">\(\approx 3.55\)</span></td>
+<td><span class="arithmatex">\(\approx 5.02\)</span></td>
+</tr>
+<tr>
+<td>Jupiter</td>
+<td><span class="arithmatex">\(\approx 42.0\)</span></td>
+<td><span class="arithmatex">\(\approx 59.5\)</span></td>
+</tr>
+</tbody>
+</table>
+<hr/>
+<h2 id="applications-in-space-science">Applications in Space Science</h2>
+<ul>
+<li><strong><span class="arithmatex">\(v_1\)</span></strong>: Needed for low-Earth orbit satellites (e.g., ISS).</li>
+<li><strong><span class="arithmatex">\(v_2\)</span></strong>: Required for missions to the Moon, Mars, or other planets.</li>
+<li><strong><span class="arithmatex">\(v_3\)</span></strong>: Needed for deep-space probes like <em>Voyager</em> or <em>Pioneer</em> missions.</li>
+</ul>
+<hr/>
 </div>
 </div><footer>
 <div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
