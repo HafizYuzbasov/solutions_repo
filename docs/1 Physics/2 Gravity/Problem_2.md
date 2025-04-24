@@ -16,7 +16,7 @@ These principles are fundamental in spaceflight mechanics and interplanetary mis
 
 ## 1. Derivation of Cosmic Velocities
 
-### 🛰 First Cosmic Velocity ($v_1$)
+###  First Cosmic Velocity ($v_1$)
 
 The first cosmic velocity is the **minimum speed needed to orbit a celestial body** near its surface in a circular orbit.
 
