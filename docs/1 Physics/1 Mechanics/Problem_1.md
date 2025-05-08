@@ -18,10 +18,10 @@ $$ \frac{d^2x}{dt^2} = 0 \Rightarrow x(t) = v_0 \cos(\theta) t $$
 $$ \frac{d^2y}{dt^2} = -g \Rightarrow y(t) = v_0 \sin(\theta) t - \frac{1}{2}gt^2 $$
 
 Where:
-- $ v_0 $: Initial velocity
-- $ \theta $: Launch angle
-- $ g $: Acceleration due to gravity ($9.81\ m/s^2$)
-- $ t $: Time
+- $$ v_0 $$: Initial velocity
+- $$ \theta $$: Launch angle
+- $$ g $$: Acceleration due to gravity ($9.81\ m/s^2$)
+- $$ t $$: Time
 
 ### Time of Flight
 
