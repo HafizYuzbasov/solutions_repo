@@ -103,7 +103,9 @@ plt.legend()
 plt.grid()
 plt.show()
 ```
-![alt text](image-5.png)
+![alt text](image-5.png) 
+
+![alt text](image-8.png)
 
 ## Range Visualization and Effects
 
