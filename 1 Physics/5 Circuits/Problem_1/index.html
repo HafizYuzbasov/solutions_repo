@@ -172,6 +172,143 @@
 <div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
 <div class="section" itemprop="articleBody">
 <h1 id="problem-1">Problem 1</h1>
+<hr/>
+<h1 id="circuits-problem-compute-equivalent-resistance-using-graph-theory">Circuits Problem: Compute Equivalent Resistance Using Graph Theory</h1>
+<h2 id="introduction">Introduction</h2>
+<p>Calculating the <strong>equivalent resistance</strong> between two nodes in a resistor network is fundamental in electrical engineering. As circuits become more complex, traditional simplification using only <strong>series</strong> and <strong>parallel</strong> rules becomes inefficient and error-prone. Graph theory offers a <strong>systematic</strong>, <strong>scalable</strong>, and <strong>automatable</strong> approach to this challenge.</p>
+<hr/>
+<h2 id="graph-theoretic-approach">Graph-Theoretic Approach</h2>
+<h3 id="modeling-the-circuit">Modeling the Circuit</h3>
+<ul>
+<li><strong>Vertices (nodes)</strong> represent junctions.</li>
+<li><strong>Edges</strong> represent resistors with a <strong>weight</strong> equal to their resistance value.</li>
+<li><strong>Objective</strong>: Find the equivalent resistance between two distinguished nodes: <code>START</code> and <code>END</code>.</li>
+</ul>
+<h3 id="mathematical-tools">Mathematical Tools</h3>
+<ul>
+<li><strong>Graph reduction</strong> using simplification rules.</li>
+<li><strong>Resistor transformations</strong>: Series, parallel, and sometimes Δ–Y (delta-wye) if needed.</li>
+<li><strong>Traversal methods</strong>: DFS/BFS for pathfinding or component detection.</li>
+<li><strong>Edge contraction</strong> and <strong>node elimination</strong> via Kirchhoff's laws.</li>
+</ul>
+<hr/>
+<h2 id="problem-setup-based-on-image">Problem Setup (Based on Image)</h2>
+<h3 id="given-circuit">Given Circuit</h3>
+<p>We are given the following circuit configuration:</p>
+<ul>
+<li>Resistors: <span class="arithmatex">\(R_1, R_2, R_4, R_5, R_6, R_7\)</span></li>
+<li>Nodes: <code>START</code> and <code>END</code></li>
+<li>
+<p>Key structures:</p>
+</li>
+<li>
+<p><span class="arithmatex">\(R_2\)</span> and <span class="arithmatex">\(R_4\)</span> are in <strong>parallel</strong></p>
+</li>
+<li>That parallel block is in <strong>series</strong> with <span class="arithmatex">\(R_7\)</span></li>
+<li>The block above is in <strong>series</strong> with two <span class="arithmatex">\(R_6\)</span> resistors</li>
+<li>Entire path in <strong>parallel</strong> with a vertical <span class="arithmatex">\(R_2\)</span></li>
+<li>Entire configuration is in <strong>series</strong> with <span class="arithmatex">\(R_5\)</span> between START and END</li>
+</ul>
+<hr/>
+<h2 id="step-by-step-reduction">Step-by-Step Reduction</h2>
+<p>Let’s denote resistances:</p>
+<ul>
+<li>
+<p>Let’s define:</p>
+</li>
+<li>
+<p><span class="arithmatex">\(R_2 = x\)</span></p>
+</li>
+<li><span class="arithmatex">\(R_4 = y\)</span></li>
+<li><span class="arithmatex">\(R_6 = z\)</span></li>
+<li><span class="arithmatex">\(R_5 = a\)</span></li>
+<li><span class="arithmatex">\(R_7 = b\)</span></li>
+</ul>
+<h3 id="step-1-simplify-parallel-r_2-parallel-r_4">Step 1: Simplify Parallel <span class="arithmatex">\(R_2 \parallel R_4\)</span></h3>
+<div class="arithmatex">\[
+R_{24} = \left( \frac{1}{R_2} + \frac{1}{R_4} \right)^{-1}
+= \left( \frac{1}{x} + \frac{1}{y} \right)^{-1}
+\]</div>
+<hr/>
+<h3 id="step-2-add-r_7-in-series">Step 2: Add <span class="arithmatex">\(R_7\)</span> in Series</h3>
+<div class="arithmatex">\[
+R_{\text{lower}} = R_{24} + R_7
+= \left( \frac{1}{x} + \frac{1}{y} \right)^{-1} + b
+\]</div>
+<hr/>
+<h3 id="step-3-add-two-r_6-in-series">Step 3: Add Two <span class="arithmatex">\(R_6\)</span> in Series</h3>
+<div class="arithmatex">\[
+R_{66} = 2 \cdot R_6 = 2z
+\]</div>
+<div class="arithmatex">\[
+R_{\text{stack}} = R_{66} + R_{\text{lower}} 
+= 2z + \left( \left( \frac{1}{x} + \frac{1}{y} \right)^{-1} + b \right)
+\]</div>
+<hr/>
+<h3 id="step-4-put-the-result-in-parallel-with-r_2-left-vertical-branch">Step 4: Put the result in Parallel with <span class="arithmatex">\(R_2\)</span> (left vertical branch)</h3>
+<div class="arithmatex">\[
+R_{\text{bigparallel}} = \left( \frac{1}{x} + \frac{1}{R_{\text{stack}}} \right)^{-1}
+\]</div>
+<hr/>
+<h3 id="step-5-add-r_5-in-series-to-get-final-resistance">Step 5: Add <span class="arithmatex">\(R_5\)</span> in Series to Get Final Resistance</h3>
+<div class="arithmatex">\[
+R_{\text{eq}} = R_5 + R_{\text{bigparallel}} = a + \left( \frac{1}{x} + \frac{1}{2z + \left( \left( \frac{1}{x} + \frac{1}{y} \right)^{-1} + b \right)} \right)^{-1}
+\]</div>
+<p>This is the <strong>final equivalent resistance</strong> between START and END.</p>
+<p><img alt="alt text" src="../image.png"/></p>
+<hr/>
+<h2 id="full-pseudocode">Full Pseudocode</h2>
+<pre><code class="language-python">def equivalent_resistance(x, y, z, a, b):
+    from sympy import symbols, simplify
+
+    # Step 1: R2 || R4
+    R24 = 1 / (1 / x + 1 / y)
+
+    # Step 2: add R7
+    R_lower = R24 + b
+
+    # Step 3: R6 + R6
+    R66 = 2 * z
+    R_stack = R66 + R_lower
+
+    # Step 4: parallel with vertical R2
+    R_parallel = 1 / (1 / x + 1 / R_stack)
+
+    # Step 5: add R5
+    R_total = a + R_parallel
+    return simplify(R_total)
+</code></pre>
+<hr/>
+<h2 id="optional-extension-numerical-evaluation">Optional Extension: Numerical Evaluation</h2>
+<p>You can plug in values to evaluate. For example:</p>
+<pre><code class="language-python">x = y = z = a = b = 1  # All resistors = 1 ohm
+R_eq = equivalent_resistance(1, 1, 1, 1, 1)
+</code></pre>
+<hr/>
+<h2 id="algorithm-analysis">Algorithm Analysis</h2>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Scalability</strong></td>
+<td>Efficient for sparse graphs using iterative reduction.</td>
+</tr>
+<tr>
+<td><strong>Complexity</strong></td>
+<td>Depends on detection of series/parallel: <span class="arithmatex">\(O(n)\)</span> to <span class="arithmatex">\(O(n \log n)\)</span>.</td>
+</tr>
+<tr>
+<td><strong>Flexibility</strong></td>
+<td>Adaptable to graphs with cycles and bridges (e.g., using star-delta).</td>
+</tr>
+</tbody>
+</table>
+<hr/>
 </div>
 </div><footer>
 <div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
