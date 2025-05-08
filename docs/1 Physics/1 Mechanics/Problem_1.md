@@ -38,9 +38,11 @@ This shows the range is maximum when $ \theta = 45^\circ $.
 ## 2. Analysis of the Range
 
 The horizontal range varies as a function of the angle of projection:
+
 - At $\theta = 0^\circ$ or $\theta = 90^\circ$, range is zero.  
 - Maximum range occurs at $45^\circ$  
 - Range is symmetric about $45^\circ$
+
 ### Influence of Parameters:
 - **Initial velocity**: Quadratically proportional to range.
 - **Gravity**: Inversely proportional to range.
