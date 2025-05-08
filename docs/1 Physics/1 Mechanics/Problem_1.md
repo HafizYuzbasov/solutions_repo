@@ -13,9 +13,9 @@ Projectile motion can be described by Newton's second law and the kinematic equa
 
 The equations of motion in the x and y directions can be derived from:
 
-$$ \frac{d^2x}{dt^2} = 0 \Rightarrow x(t) = v_0 \cos(\theta) t $$
+$ \frac{d^2x}{dt^2} = 0 \Rightarrow x(t) = v_0 \cos(\theta) t $
 
-$$ \frac{d^2y}{dt^2} = -g \Rightarrow y(t) = v_0 \sin(\theta) t - \frac{1}{2}gt^2 $$
+$ \frac{d^2y}{dt^2} = -g \Rightarrow y(t) = v_0 \sin(\theta) t - \frac{1}{2}gt^2 $
 
 Where:
 - $ v_0 $: Initial velocity
@@ -39,7 +39,7 @@ This shows the range is maximum when $ \theta = 45^\circ $.
 
 The horizontal range varies as a function of the angle of projection:
 - At $ \theta = 0^\circ $ or $ 90^\circ $, range is zero.
-- Maximum range occurs at $ 45^\circ $.
+-  Maximum range occurs at $45^\circ $
 - Range is symmetric about $ 45^\circ $.
 
 ### Influence of Parameters:
