@@ -13,9 +13,9 @@ Projectile motion can be described by Newton's second law and the kinematic equa
 
 The equations of motion in the x and y directions can be derived from:
 
-$ \frac{d^2x}{dt^2} = 0 \Rightarrow x(t) = v_0 \cos(\theta) t $
+$$ \frac{d^2x}{dt^2} = 0 \Rightarrow x(t) = v_0 \cos(\theta) t $$
 
-$ \frac{d^2y}{dt^2} = -g \Rightarrow y(t) = v_0 \sin(\theta) t - \frac{1}{2}gt^2 $
+$$ \frac{d^2y}{dt^2} = -g \Rightarrow y(t) = v_0 \sin(\theta) t - \frac{1}{2}gt^2 $$
 
 Where:
 - $ v_0 $: Initial velocity
@@ -33,7 +33,7 @@ $$ T = \frac{2v_0\sin(\theta)}{g} $$
 The horizontal range ($R$) of the projectile is given by:
 $$ R = \frac{v_0^2\sin(2\theta)}{g} $$
 
-This shows the range is maximum when $ \theta = 45^\circ $.
+This shows the range is maximum when $$ \theta = 45^\circ $$.
 
 ## 2. Analysis of the Range
 
