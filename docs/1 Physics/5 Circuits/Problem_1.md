@@ -135,17 +135,6 @@ def equivalent_resistance(x, y, z, a, b):
 
 ---
 
-##  Optional Extension: Numerical Evaluation
-
-You can plug in values to evaluate. For example:
-
-```python
-x = y = z = a = b = 1  # All resistors = 1 ohm
-R_eq = equivalent_resistance(1, 1, 1, 1, 1)
-```
-
----
-
 ##  Algorithm Analysis
 
 | Feature         | Notes                                                                 |
