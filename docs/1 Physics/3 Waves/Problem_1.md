@@ -119,8 +119,9 @@ def animate(t):
 
 ani = animation.FuncAnimation(fig, animate, frames=t_vals, interval=50, blit=True)
 ani.save("interference.gif", writer='pillow')
-```
-![alt text](image-1.png)
+``` 
+
+![alt text](<PHYSICS EXERCISE.gif>)
 ---
 
 ## 4. Observations and Analysis
