@@ -1,7 +1,5 @@
 # Problem 1
 
-Absolutely! Here's a **well-structured Markdown document** that clearly presents the problem, simulation approach, code snippets, and explanations. I've formatted it clearly and used proper Markdown elements like code blocks, headings, and bold text. This should be an excellent document to showcase to your teacher.
-
 ---
 
 # Central Limit Theorem: A Simulation-Based Exploration

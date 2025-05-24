@@ -159,16 +159,3 @@ Try varying:
 | CRT Tube          | $\mathbf{E}$ + $\mathbf{B}$ | Electron beam deflection               |
 
 ---
-
-## 🧭 **Extensions**
-
-✅ Add **non-uniform $\mathbf{B}$** (magnetic mirror effect).
-✅ Include **relativistic corrections** for high velocities.
-✅ Simulate **plasma behavior** with multiple particles.
-
----
-
-Would you like me to generate **GIF animations** showing the trajectories? Let me know! 🚀
-
-
----

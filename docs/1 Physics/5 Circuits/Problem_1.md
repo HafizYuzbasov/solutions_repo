@@ -3,146 +3,155 @@
 
 ---
 
-#  Circuits Problem: Compute Equivalent Resistance Using Graph Theory
+# Circuits
 
-##  Introduction
+## Problem 1
 
-Calculating the **equivalent resistance** between two nodes in a resistor network is fundamental in electrical engineering. As circuits become more complex, traditional simplification using only **series** and **parallel** rules becomes inefficient and error-prone. Graph theory offers a **systematic**, **scalable**, and **automatable** approach to this challenge.
-
----
-
-##  Graph-Theoretic Approach
-
-###  Modeling the Circuit
-
-* **Vertices (nodes)** represent junctions.
-* **Edges** represent resistors with a **weight** equal to their resistance value.
-* **Objective**: Find the equivalent resistance between two distinguished nodes: `START` and `END`.
-
-###  Mathematical Tools
-
-* **Graph reduction** using simplification rules.
-* **Resistor transformations**: Series, parallel, and sometimes Δ–Y (delta-wye) if needed.
-* **Traversal methods**: DFS/BFS for pathfinding or component detection.
-* **Edge contraction** and **node elimination** via Kirchhoff's laws.
+### **Equivalent Resistance Using Graph Theory**
 
 ---
 
-##  Problem Setup (Based on Image)
+### Motivation
 
-###  Given Circuit
+Calculating equivalent resistance is a fundamental problem in circuit analysis. Traditional methods involve applying series and parallel rules manually, which can become tedious for complex circuits. Graph theory provides an elegant alternative: by modeling the circuit as a weighted graph, we can systematically simplify it using algorithms.
 
-We are given the following circuit configuration:
+* **Nodes (Vertices)** represent junctions in the circuit.
+* **Edges** represent resistors with weights equal to their resistance values.
 
-* Resistors: $R_1, R_2, R_4, R_5, R_6, R_7$
-* Nodes: `START` and `END`
-* Key structures:
-
-  * $R_2$ and $R_4$ are in **parallel**
-  * That parallel block is in **series** with $R_7$
-  * The block above is in **series** with two $R_6$ resistors
-  * Entire path in **parallel** with a vertical $R_2$
-  * Entire configuration is in **series** with $R_5$ between START and END
+This approach is not only theoretically rich but also enables automated analysis for complex systems.
 
 ---
 
-##  Step-by-Step Reduction
-
-Let’s denote resistances:
-
-* Let’s define:
-
-  * $R_2 = x$
-  * $R_4 = y$
-  * $R_6 = z$
-  * $R_5 = a$
-  * $R_7 = b$
-
-###  Step 1: Simplify Parallel $R_2 \parallel R_4$
-
-$$
-R_{24} = \left( \frac{1}{R_2} + \frac{1}{R_4} \right)^{-1}
-= \left( \frac{1}{x} + \frac{1}{y} \right)^{-1}
-$$
+### Task: Advanced Solution – Full Implementation
 
 ---
 
-###  Step 2: Add $R_7$ in Series
+## 🧮 Theoretical Foundation
 
-$$
-R_{\text{lower}} = R_{24} + R_7
-= \left( \frac{1}{x} + \frac{1}{y} \right)^{-1} + b
-$$
+### Equivalent Resistance:
 
----
+For a graph $G = (V, E)$:
 
-###  Step 3: Add Two $R_6$ in Series
+* **Series Rule**:
 
-$$
-R_{66} = 2 \cdot R_6 = 2z
-$$
+  * Resistors in a chain (single path between nodes) add up:
+  * $R_{eq} = R_1 + R_2 + \dots$
 
-$$
-R_{\text{stack}} = R_{66} + R_{\text{lower}} 
-= 2z + \left( \left( \frac{1}{x} + \frac{1}{y} \right)^{-1} + b \right)
-$$
+* **Parallel Rule**:
+
+  * Resistors in parallel (multiple paths between nodes) combine via reciprocals:
+  * $\frac{1}{R_{eq}} = \frac{1}{R_1} + \frac{1}{R_2} + \dots$
 
 ---
 
-###  Step 4: Put the result in Parallel with $R_2$ (left vertical branch)
+## 📝 Pseudocode
 
-$$
-R_{\text{bigparallel}} = \left( \frac{1}{x} + \frac{1}{R_{\text{stack}}} \right)^{-1}
-$$
+```
+Algorithm CalculateEquivalentResistance(graph, source, target):
+    1. While graph has more than 2 nodes:
+        a. For each node with exactly 2 neighbors:
+            - If only 1 path between nodes: Combine series resistors.
+        b. For each pair of nodes with multiple parallel edges:
+            - Combine parallel resistors.
+    2. If only source and target nodes remain:
+        - Return resistance between source and target.
 
----
-
-###  Step 5: Add $R_5$ in Series to Get Final Resistance
-
-$$
-R_{\text{eq}} = R_5 + R_{\text{bigparallel}} = a + \left( \frac{1}{x} + \frac{1}{2z + \left( \left( \frac{1}{x} + \frac{1}{y} \right)^{-1} + b \right)} \right)^{-1}
-$$
-
-This is the **final equivalent resistance** between START and END.
-
-![alt text](image.png)
-
----
-
-##  Full Pseudocode
-
-```python
-def equivalent_resistance(x, y, z, a, b):
-    from sympy import symbols, simplify
-
-    # Step 1: R2 || R4
-    R24 = 1 / (1 / x + 1 / y)
-
-    # Step 2: add R7
-    R_lower = R24 + b
-
-    # Step 3: R6 + R6
-    R66 = 2 * z
-    R_stack = R66 + R_lower
-
-    # Step 4: parallel with vertical R2
-    R_parallel = 1 / (1 / x + 1 / R_stack)
-
-    # Step 5: add R5
-    R_total = a + R_parallel
-    return simplify(R_total)
+    Note:
+    - Detect cycles for parallel paths.
+    - Detect chains for series paths.
 ```
 
 ---
 
-##  Algorithm Analysis
+## 🚀 Python Implementation
 
-| Feature         | Notes                                                                 |
-| --------------- | --------------------------------------------------------------------- |
-| **Scalability** | Efficient for sparse graphs using iterative reduction.                |
-| **Complexity**  | Depends on detection of series/parallel: $O(n)$ to $O(n \log n)$.     |
-| **Flexibility** | Adaptable to graphs with cycles and bridges (e.g., using star-delta). |
+```python
+import networkx as nx
+
+def combine_series(G):
+    changed = False
+    for node in list(G.nodes):
+        neighbors = list(G.neighbors(node))
+        if len(neighbors) == 2 and node not in ['source', 'target']:
+            u, v = neighbors
+            R1 = G.edges[node, u]['resistance']
+            R2 = G.edges[node, v]['resistance']
+            G.add_edge(u, v, resistance=R1 + R2)
+            G.remove_node(node)
+            changed = True
+    return changed
+
+def combine_parallel(G):
+    changed = False
+    for u, v in list(G.edges):
+        parallel_edges = [e for e in G.edges(u, data=True) if e[0] == u and e[1] == v]
+        if len(parallel_edges) > 1:
+            inv_sum = sum(1 / e[2]['resistance'] for e in parallel_edges)
+            R_eq = 1 / inv_sum
+            G.remove_edges_from([(u, v) for e in parallel_edges])
+            G.add_edge(u, v, resistance=R_eq)
+            changed = True
+    return changed
+
+def simplify_circuit(G):
+    while True:
+        if not combine_series(G) and not combine_parallel(G):
+            break
+    return G
+
+# Example Circuit: Nested Series & Parallel
+G = nx.Graph()
+G.add_edge('source', 'A', resistance=4)
+G.add_edge('A', 'B', resistance=6)
+G.add_edge('A', 'B', resistance=3)  # Parallel path
+G.add_edge('B', 'target', resistance=2)
+
+G = simplify_circuit(G)
+final_R = G.edges['source', 'target']['resistance']
+print(f"Equivalent Resistance: {final_R:.2f} Ohms")
+```
 
 ---
+
+## 🧪 Test Examples
+
+### Example 1: Series Circuit
+
+* 3 resistors in series: $R_1 = 4 \, \Omega, R_2 = 5 \, \Omega, R_3 = 6 \, \Omega$
+* $R_{eq} = 4 + 5 + 6 = 15 \, \Omega$
+
+### Example 2: Parallel Circuit
+
+* 2 resistors in parallel: $R_1 = 4 \, \Omega, R_2 = 6 \, \Omega$
+* $R_{eq} = \frac{1}{\frac{1}{4} + \frac{1}{6}} = 2.4 \, \Omega$
+
+### Example 3: Complex Circuit
+
+* Nested parallel + series:
+* The above example graph: $R_{eq} = 4 + (1 / (1/6 + 1/3)) + 2 = 4 + 2 + 2 = 8 \, \Omega$
+
+---
+
+## 📊 Efficiency Analysis
+
+| Step               | Complexity           |
+| ------------------ | -------------------- |
+| Series Detection   | $O(n)$ per iteration |
+| Parallel Detection | $O(m)$ per iteration |
+| Iterations         | Up to $O(n)$ total   |
+
+Overall complexity is $O(n^2)$ in the worst case.
+
+---
+
+## 🔬 Future Extensions
+
+* Handle **nonlinear elements** (e.g., diodes, transistors).
+* Solve using **Laplacian matrices** for mesh analysis.
+* Support **voltage/current sources** via node voltage methods.
+
+---
+
+If you’d like, I can **package this into a neat notebook** or add **visualization of the graph**! Let me know! 🎓⚡
 
 
