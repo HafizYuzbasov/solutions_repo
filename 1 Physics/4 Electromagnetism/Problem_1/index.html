@@ -172,135 +172,165 @@
 <div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
 <div class="section" itemprop="articleBody">
 <h1 id="problem-1">Problem 1</h1>
-<p>Great! Based on the images you've shared and the task description, here's a full solution in Markdown format that includes code and explanation for simulating the motion of charged particles under different electric and magnetic field configurations, matching the visual style of the plots you provided.</p>
 <hr/>
-<h1 id="simulating-the-effects-of-the-lorentz-force"><strong>Simulating the Effects of the Lorentz Force</strong></h1>
-<h2 id="1-applications-of-the-lorentz-force"><strong>1. Applications of the Lorentz Force</strong></h2>
-<p>The Lorentz force,</p>
+<h1 id="electromagnetism-problem-1-simulating-the-effects-of-the-lorentz-force">📚 <strong>Electromagnetism - Problem 1: Simulating the Effects of the Lorentz Force</strong></h1>
+<hr/>
+<h2 id="1-theoretical-background">🌌 <strong>1. Theoretical Background</strong></h2>
+<p>The Lorentz force equation describes how a charged particle moves under electric and magnetic fields:</p>
 <div class="arithmatex">\[
-\mathbf{F} = q\mathbf{E} + q\mathbf{v} \times \mathbf{B},
+\mathbf{F} = q \left( \mathbf{E} + \mathbf{v} \times \mathbf{B} \right)
 \]</div>
-<p>is fundamental in a range of physical systems:</p>
+<p>where:</p>
 <ul>
-<li><strong>Particle accelerators:</strong> Control particle trajectories using electric and magnetic fields.</li>
-<li><strong>Mass spectrometers:</strong> Separate ions based on mass-to-charge ratio via curved paths in magnetic fields.</li>
-<li><strong>Plasma confinement (tokamaks):</strong> Magnetic fields trap charged particles, forming helical motion.</li>
-<li><strong>Cathode ray tubes:</strong> Use E and B fields to steer electrons.</li>
+<li><span class="arithmatex">\(q\)</span> = particle charge</li>
+<li><span class="arithmatex">\(\mathbf{v}\)</span> = particle velocity</li>
+<li><span class="arithmatex">\(\mathbf{E}\)</span> = electric field</li>
+<li><span class="arithmatex">\(\mathbf{B}\)</span> = magnetic field</li>
 </ul>
-<h2 id="2-simulating-particle-motion"><strong>2. Simulating Particle Motion</strong></h2>
-<h3 id="equations-of-motion"><strong>Equations of Motion</strong></h3>
-<p>For a particle of charge <span class="arithmatex">\(q\)</span> and mass <span class="arithmatex">\(m\)</span>, Newton's second law gives:</p>
+<p>This fundamental law governs the behavior of particles in systems like:</p>
+<ul>
+<li><strong>Cyclotrons</strong>: Particle accelerators using <span class="arithmatex">\(\mathbf{B}\)</span> to bend paths.</li>
+<li><strong>Mass spectrometers</strong>: Measuring <span class="arithmatex">\(m/q\)</span> by magnetic deflection.</li>
+<li><strong>Plasma confinement</strong>: Tokamaks use <span class="arithmatex">\(\mathbf{B}\)</span> to trap plasma.</li>
+</ul>
+<hr/>
+<h2 id="2-python-simulation">🌐 <strong>2. Python Simulation</strong></h2>
+<h3 id="equations-of-motion">⚙️ Equations of Motion</h3>
+<p>We numerically integrate Newton’s second law:</p>
 <div class="arithmatex">\[
-m\frac{d\mathbf{v}}{dt} = q(\mathbf{E} + \mathbf{v} \times \mathbf{B}).
+m \frac{d\mathbf{v}}{dt} = q \left( \mathbf{E} + \mathbf{v} \times \mathbf{B} \right)
 \]</div>
-<p>We'll use the <strong>Runge-Kutta 4th order (RK4)</strong> method to solve these differential equations.</p>
-<h3 id="python-implementation"><strong>Python Implementation</strong></h3>
+<p>with:</p>
+<div class="arithmatex">\[
+\frac{d\mathbf{r}}{dt} = \mathbf{v}
+\]</div>
+<p>We’ll use <strong>Euler's method</strong> for simplicity.</p>
+<hr/>
+<h3 id="simulation-code-python">🖥️ <strong>Simulation Code (Python)</strong></h3>
+<p>Here’s the <strong>full code</strong> simulating:
+✅ Uniform <span class="arithmatex">\(\mathbf{B}\)</span> field
+✅ Uniform <span class="arithmatex">\(\mathbf{E}\)</span> field
+✅ Crossed <span class="arithmatex">\(\mathbf{E}\)</span> and <span class="arithmatex">\(\mathbf{B}\)</span></p>
+<p>And <strong>3D trajectory plots</strong>!</p>
 <pre><code class="language-python">import numpy as np
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 
-def lorentz_force(q, E, B, v):
-    return q * (E + np.cross(v, B))
+# Lorentz force simulation
+def simulate_lorentz(q, m, E, B, v0, r0, dt, steps):
+    v = np.zeros((steps, 3))
+    r = np.zeros((steps, 3))
+    v[0] = v0
+    r[0] = r0
 
-def rk4_step(x, v, dt, q, m, E, B):
-    def acceleration(v):
-        return lorentz_force(q, E, B, v) / m
+    for i in range(1, steps):
+        F = q * (E + np.cross(v[i-1], B))
+        a = F / m
+        v[i] = v[i-1] + a * dt
+        r[i] = r[i-1] + v[i] * dt
 
-    k1v = acceleration(v)
-    k1x = v
+    return r, v
 
-    k2v = acceleration(v + 0.5 * dt * k1v)
-    k2x = v + 0.5 * dt * k1v
+# Parameters
+q = 1.0    # Charge
+m = 1.0    # Mass
+E = np.array([0.0, 0.0, 0.0])  # Uniform electric field
+B = np.array([0.0, 0.0, 1.0])  # Uniform magnetic field (along z)
 
-    k3v = acceleration(v + 0.5 * dt * k2v)
-    k3x = v + 0.5 * dt * k2v
+v0 = np.array([1.0, 0.0, 0.0])  # Initial velocity
+r0 = np.array([0.0, 0.0, 0.0])  # Initial position
 
-    k4v = acceleration(v + dt * k3v)
-    k4x = v + dt * k3v
+dt = 0.01
+steps = 3000
 
-    x_next = x + (dt / 6.0) * (k1x + 2*k2x + 2*k3x + k4x)
-    v_next = v + (dt / 6.0) * (k1v + 2*k2v + 2*k3v + k4v)
+# Run simulation
+r, v = simulate_lorentz(q, m, E, B, v0, r0, dt, steps)
 
-    return x_next, v_next
-
-def simulate_motion(E, B, v0, x0, q, m, steps, dt):
-    positions = []
-    velocities = []
-
-    x = np.array(x0, dtype=float)
-    v = np.array(v0, dtype=float)
-
-    for _ in range(steps):
-        positions.append(x.copy())
-        velocities.append(v.copy())
-        x, v = rk4_step(x, v, dt, q, m, E, B)
-
-    return np.array(positions)
-
-def plot_trajectory(positions, title):
-    fig = plt.figure()
-    ax = fig.add_subplot(111, projection='3d')
-    ax.plot(positions[:,0], positions[:,1], positions[:,2])
-    ax.set_xlabel('x (m)')
-    ax.set_ylabel('y (m)')
-    ax.set_zlabel('z (m)')
-    ax.set_title(title)
-    plt.show()
+# Plotting 3D trajectory
+fig = plt.figure(figsize=(8,6))
+ax = fig.add_subplot(111, projection='3d')
+ax.plot(r[:,0], r[:,1], r[:,2])
+ax.set_xlabel('x')
+ax.set_ylabel('y')
+ax.set_zlabel('z')
+ax.set_title("Charged Particle Trajectory (Lorentz Force)")
+plt.show()
 </code></pre>
-<h3 id="scenarios"><strong>Scenarios</strong></h3>
-<h4 id="a-uniform-magnetic-field-circular-motion"><strong>a) Uniform Magnetic Field (Circular Motion)</strong></h4>
-<pre><code class="language-python">E = np.array([0, 0, 0])
-B = np.array([0, 0, 1])  # 1 T along z
-v0 = [1, 0, 0]           # initial velocity
-x0 = [0, 0, 0]
-positions = simulate_motion(E, B, v0, x0, q=1, m=1, steps=1000, dt=0.01)
-plot_trajectory(positions, "Uniform Magnetic Field\n(B=1.0 T): Circular Motion")
+<p><img alt="alt text" src="../PHYSICS%20EXERCISE.gif"/>
+<img alt="alt text" src="../PHYSICS%20EXERCISE-1.gif"/>
+<img alt="alt text" src="../PHYSICS%20EXERCISE-2.gif"/>
+<img alt="alt text" src="../PHYSICS%20EXERCISE-3.gif"/></p>
+<hr/>
+<h2 id="visualization-examples">🎨 <strong>Visualization Examples</strong></h2>
+<h3 id="1-uniform-magnetic-field-circular-motion">1️⃣ <strong>Uniform Magnetic Field: Circular Motion</strong></h3>
+<ul>
+<li>Particle orbits in circles (Larmor motion).</li>
+<li>Radius <span class="arithmatex">\(R = \frac{mv}{qB}\)</span>.</li>
+</ul>
+<h3 id="2-crossed-mathbfe-and-mathbfb-drift-motion">2️⃣ <strong>Crossed <span class="arithmatex">\(\mathbf{E}\)</span> and <span class="arithmatex">\(\mathbf{B}\)</span>: Drift Motion</strong></h3>
+<ul>
+<li>Drift velocity:</li>
+</ul>
+<div class="arithmatex">\[
+\mathbf{v}_d = \frac{\mathbf{E} \times \mathbf{B}}{B^2}
+\]</div>
+<h3 id="3-uniform-mathbfe-field-acceleration">3️⃣ <strong>Uniform <span class="arithmatex">\(\mathbf{E}\)</span> Field: Acceleration</strong></h3>
+<ul>
+<li>Linear acceleration along <span class="arithmatex">\(\mathbf{E}\)</span>.</li>
+</ul>
+<p>Try changing:</p>
+<pre><code class="language-python">E = np.array([0.0, 1.0, 0.0])
+B = np.array([0.0, 0.0, 1.0])
 </code></pre>
-<h4 id="b-parallel-electric-and-magnetic-fields-helical-motion"><strong>b) Parallel Electric and Magnetic Fields (Helical Motion)</strong></h4>
-<pre><code class="language-python">E = np.array([0, 0, 0.5])
-B = np.array([0, 0, 1])
-v0 = [1, 0, 1]  # initial velocity has component along B
-x0 = [0, 0, 0]
-positions = simulate_motion(E, B, v0, x0, q=1, m=1, steps=1000, dt=0.01)
-plot_trajectory(positions, "Parallel Electric &amp; Magnetic Fields\n(E=0.5 V/m, B=1.0 T): Helical Motion")
-</code></pre>
-<h4 id="c-crossed-electric-and-magnetic-fields-drift-motion"><strong>c) Crossed Electric and Magnetic Fields (Drift Motion)</strong></h4>
-<pre><code class="language-python">E = np.array([0.5, 0, 0])
-B = np.array([0, 0, 1])
-v0 = [0, 1, 0]  # initial velocity
-x0 = [0, 0, 0]
-positions = simulate_motion(E, B, v0, x0, q=1, m=1, steps=1000, dt=0.01)
-plot_trajectory(positions, "Crossed Electric &amp; Magnetic Fields\n(E ⊥ B, E=0.5 V/m, B=1.0 T): Drift Motion")
-</code></pre>
-<h2 id="3-parameter-exploration"><strong>3. Parameter Exploration</strong></h2>
-<p>Try adjusting:</p>
+<p>to see <strong>helical motion</strong>!</p>
+<hr/>
+<h2 id="parameter-exploration">📊 <strong>Parameter Exploration</strong></h2>
+<p>Try varying:</p>
 <ul>
-<li><span class="arithmatex">\(B = 2.0\)</span> T or <span class="arithmatex">\(0.5\)</span> T.</li>
-<li><span class="arithmatex">\(E = 1.0\)</span> V/m or change direction.</li>
-<li><span class="arithmatex">\(v_0\)</span>: initial angles and speeds.</li>
-<li><span class="arithmatex">\(q\)</span>, <span class="arithmatex">\(m\)</span>: like for an electron <span class="arithmatex">\(q = -1.6 \times 10^{-19}\)</span> C.</li>
+<li><span class="arithmatex">\(B = [0,0,5.0]\)</span>: stronger magnetic field → tighter orbits.</li>
+<li><span class="arithmatex">\(E = [0,5.0,0]\)</span>: stronger electric field → faster drift.</li>
+<li><span class="arithmatex">\(v0 = [1.0, 1.0, 0]\)</span>: initial velocity at angle → helical paths.</li>
 </ul>
-<p>Observe:</p>
-<ul>
-<li><strong>Larmor radius:</strong> <span class="arithmatex">\(r = \frac{mv_{\perp}}{qB}\)</span></li>
-<li><strong>Helical pitch:</strong> <span class="arithmatex">\(v_{\parallel} \cdot T\)</span>, where <span class="arithmatex">\(T = \frac{2\pi m}{qB}\)</span></li>
-<li><strong>Drift velocity:</strong> <span class="arithmatex">\(\mathbf{v}_d = \frac{\mathbf{E} \times \mathbf{B}}{B^2}\)</span></li>
-</ul>
-<h2 id="4-visualization-samples"><strong>4. Visualization Samples</strong></h2>
-<p>The resulting plots replicate the behavior seen in your images:</p>
-<ul>
-<li><strong>Circular motion</strong> in a magnetic field.</li>
-<li><strong>Helical path</strong> when <span class="arithmatex">\(\mathbf{v}\)</span> has a component along <span class="arithmatex">\(\mathbf{B}\)</span>.</li>
-<li><strong>Drift motion</strong> when <span class="arithmatex">\(\mathbf{E} \perp \mathbf{B}\)</span>.</li>
-</ul>
-<h2 id="5-extensions"><strong>5. Extensions</strong></h2>
-<p>Future simulations could include:</p>
-<ul>
-<li><strong>Non-uniform magnetic fields</strong> (e.g., magnetic mirrors).</li>
-<li><strong>Time-varying fields</strong> (simulate induction).</li>
-<li><strong>Relativistic corrections</strong> (for very fast particles).</li>
-<li><strong>Collisions in plasma simulations.</strong></li>
-</ul>
+<hr/>
+<h2 id="real-world-applications">🚀 <strong>Real-World Applications</strong></h2>
+<table>
+<thead>
+<tr>
+<th>System</th>
+<th>Fields Used</th>
+<th>Lorentz Force Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Cyclotron</td>
+<td><span class="arithmatex">\(\mathbf{B}\)</span></td>
+<td>Circular motion, acceleration</td>
+</tr>
+<tr>
+<td>Mass Spectrometer</td>
+<td><span class="arithmatex">\(\mathbf{B}\)</span></td>
+<td>Charge-to-mass ratio measurement</td>
+</tr>
+<tr>
+<td>Tokamak (Fusion)</td>
+<td><span class="arithmatex">\(\mathbf{B}\)</span> + <span class="arithmatex">\(\mathbf{E}\)</span></td>
+<td>Plasma confinement via magnetic fields</td>
+</tr>
+<tr>
+<td>CRT Tube</td>
+<td><span class="arithmatex">\(\mathbf{E}\)</span> + <span class="arithmatex">\(\mathbf{B}\)</span></td>
+<td>Electron beam deflection</td>
+</tr>
+</tbody>
+</table>
+<hr/>
+<h2 id="extensions">🧭 <strong>Extensions</strong></h2>
+<p>✅ Add <strong>non-uniform <span class="arithmatex">\(\mathbf{B}\)</span></strong> (magnetic mirror effect).
+✅ Include <strong>relativistic corrections</strong> for high velocities.
+✅ Simulate <strong>plasma behavior</strong> with multiple particles.</p>
+<hr/>
+<p>Would you like me to generate <strong>GIF animations</strong> showing the trajectories? Let me know! 🚀</p>
 <hr/>
 </div>
 </div><footer>
