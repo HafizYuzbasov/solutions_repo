@@ -173,9 +173,9 @@
 <div class="section" itemprop="articleBody">
 <h1 id="problem-1">Problem 1</h1>
 <hr/>
-<h1 id="electromagnetism-problem-1-simulating-the-effects-of-the-lorentz-force">📚 <strong>Electromagnetism - Problem 1: Simulating the Effects of the Lorentz Force</strong></h1>
+<h1 id="electromagnetism-problem-1-simulating-the-effects-of-the-lorentz-force"><strong>Electromagnetism - Problem 1: Simulating the Effects of the Lorentz Force</strong></h1>
 <hr/>
-<h2 id="1-theoretical-background">🌌 <strong>1. Theoretical Background</strong></h2>
+<h2 id="1-theoretical-background"><strong>1. Theoretical Background</strong></h2>
 <p>The Lorentz force equation describes how a charged particle moves under electric and magnetic fields:</p>
 <div class="arithmatex">\[
 \mathbf{F} = q \left( \mathbf{E} + \mathbf{v} \times \mathbf{B} \right)
@@ -194,8 +194,8 @@
 <li><strong>Plasma confinement</strong>: Tokamaks use <span class="arithmatex">\(\mathbf{B}\)</span> to trap plasma.</li>
 </ul>
 <hr/>
-<h2 id="2-python-simulation">🌐 <strong>2. Python Simulation</strong></h2>
-<h3 id="equations-of-motion">⚙️ Equations of Motion</h3>
+<h2 id="2-python-simulation"><strong>2. Python Simulation</strong></h2>
+<h3 id="equations-of-motion">Equations of Motion</h3>
 <p>We numerically integrate Newton’s second law:</p>
 <div class="arithmatex">\[
 m \frac{d\mathbf{v}}{dt} = q \left( \mathbf{E} + \mathbf{v} \times \mathbf{B} \right)
@@ -206,7 +206,7 @@ m \frac{d\mathbf{v}}{dt} = q \left( \mathbf{E} + \mathbf{v} \times \mathbf{B} \r
 \]</div>
 <p>We’ll use <strong>Euler's method</strong> for simplicity.</p>
 <hr/>
-<h3 id="simulation-code-python">🖥️ <strong>Simulation Code (Python)</strong></h3>
+<h3 id="simulation-code-python"><strong>Simulation Code (Python)</strong></h3>
 <p>Here’s the <strong>full code</strong> simulating:
 ✅ Uniform <span class="arithmatex">\(\mathbf{B}\)</span> field
 ✅ Uniform <span class="arithmatex">\(\mathbf{E}\)</span> field
@@ -261,20 +261,20 @@ plt.show()
 <img alt="alt text" src="../PHYSICS%20EXERCISE-2.gif"/>
 <img alt="alt text" src="../PHYSICS%20EXERCISE-3.gif"/></p>
 <hr/>
-<h2 id="visualization-examples">🎨 <strong>Visualization Examples</strong></h2>
-<h3 id="1-uniform-magnetic-field-circular-motion">1️⃣ <strong>Uniform Magnetic Field: Circular Motion</strong></h3>
+<h2 id="visualization-examples"><strong>Visualization Examples</strong></h2>
+<h3 id="1-uniform-magnetic-field-circular-motion">1️ <strong>Uniform Magnetic Field: Circular Motion</strong></h3>
 <ul>
 <li>Particle orbits in circles (Larmor motion).</li>
 <li>Radius <span class="arithmatex">\(R = \frac{mv}{qB}\)</span>.</li>
 </ul>
-<h3 id="2-crossed-mathbfe-and-mathbfb-drift-motion">2️⃣ <strong>Crossed <span class="arithmatex">\(\mathbf{E}\)</span> and <span class="arithmatex">\(\mathbf{B}\)</span>: Drift Motion</strong></h3>
+<h3 id="2-crossed-mathbfe-and-mathbfb-drift-motion">2️ <strong>Crossed <span class="arithmatex">\(\mathbf{E}\)</span> and <span class="arithmatex">\(\mathbf{B}\)</span>: Drift Motion</strong></h3>
 <ul>
 <li>Drift velocity:</li>
 </ul>
 <div class="arithmatex">\[
 \mathbf{v}_d = \frac{\mathbf{E} \times \mathbf{B}}{B^2}
 \]</div>
-<h3 id="3-uniform-mathbfe-field-acceleration">3️⃣ <strong>Uniform <span class="arithmatex">\(\mathbf{E}\)</span> Field: Acceleration</strong></h3>
+<h3 id="3-uniform-mathbfe-field-acceleration">3️ <strong>Uniform <span class="arithmatex">\(\mathbf{E}\)</span> Field: Acceleration</strong></h3>
 <ul>
 <li>Linear acceleration along <span class="arithmatex">\(\mathbf{E}\)</span>.</li>
 </ul>
@@ -284,7 +284,7 @@ B = np.array([0.0, 0.0, 1.0])
 </code></pre>
 <p>to see <strong>helical motion</strong>!</p>
 <hr/>
-<h2 id="parameter-exploration">📊 <strong>Parameter Exploration</strong></h2>
+<h2 id="parameter-exploration"><strong>Parameter Exploration</strong></h2>
 <p>Try varying:</p>
 <ul>
 <li><span class="arithmatex">\(B = [0,0,5.0]\)</span>: stronger magnetic field → tighter orbits.</li>
@@ -292,7 +292,7 @@ B = np.array([0.0, 0.0, 1.0])
 <li><span class="arithmatex">\(v0 = [1.0, 1.0, 0]\)</span>: initial velocity at angle → helical paths.</li>
 </ul>
 <hr/>
-<h2 id="real-world-applications">🚀 <strong>Real-World Applications</strong></h2>
+<h2 id="real-world-applications"><strong>Real-World Applications</strong></h2>
 <table>
 <thead>
 <tr>
