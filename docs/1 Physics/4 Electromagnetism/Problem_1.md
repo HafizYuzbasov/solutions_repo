@@ -2,11 +2,11 @@
 
 ---
 
-# 📚 **Electromagnetism - Problem 1: Simulating the Effects of the Lorentz Force**
+#  **Electromagnetism - Problem 1: Simulating the Effects of the Lorentz Force**
 
 ---
 
-## 🌌 **1. Theoretical Background**
+##  **1. Theoretical Background**
 
 The Lorentz force equation describes how a charged particle moves under electric and magnetic fields:
 
@@ -29,9 +29,9 @@ This fundamental law governs the behavior of particles in systems like:
 
 ---
 
-## 🌐 **2. Python Simulation**
+##  **2. Python Simulation**
 
-### ⚙️ Equations of Motion
+###  Equations of Motion
 
 We numerically integrate Newton’s second law:
 
@@ -49,7 +49,7 @@ We’ll use **Euler's method** for simplicity.
 
 ---
 
-### 🖥️ **Simulation Code (Python)**
+###  **Simulation Code (Python)**
 
 Here’s the **full code** simulating:
 ✅ Uniform $\mathbf{B}$ field
@@ -109,14 +109,14 @@ plt.show()
 ![alt text](<PHYSICS EXERCISE-3.gif>)
 ---
 
-## 🎨 **Visualization Examples**
+##  **Visualization Examples**
 
-### 1️⃣ **Uniform Magnetic Field: Circular Motion**
+### 1️ **Uniform Magnetic Field: Circular Motion**
 
 * Particle orbits in circles (Larmor motion).
 * Radius $R = \frac{mv}{qB}$.
 
-### 2️⃣ **Crossed $\mathbf{E}$ and $\mathbf{B}$: Drift Motion**
+### 2️ **Crossed $\mathbf{E}$ and $\mathbf{B}$: Drift Motion**
 
 * Drift velocity:
 
@@ -124,7 +124,7 @@ $$
 \mathbf{v}_d = \frac{\mathbf{E} \times \mathbf{B}}{B^2}
 $$
 
-### 3️⃣ **Uniform $\mathbf{E}$ Field: Acceleration**
+### 3️ **Uniform $\mathbf{E}$ Field: Acceleration**
 
 * Linear acceleration along $\mathbf{E}$.
 
@@ -139,7 +139,7 @@ to see **helical motion**!
 
 ---
 
-## 📊 **Parameter Exploration**
+##  **Parameter Exploration**
 
 Try varying:
 
@@ -149,7 +149,7 @@ Try varying:
 
 ---
 
-## 🚀 **Real-World Applications**
+##  **Real-World Applications**
 
 | System            | Fields Used                 | Lorentz Force Effect                   |
 | ----------------- | --------------------------- | -------------------------------------- |
