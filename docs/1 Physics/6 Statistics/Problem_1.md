@@ -160,11 +160,3 @@ simulate_sampling(binomial_pop, sample_sizes, title_prefix="Binomial")
 Through simulation, we observed the **power of the Central Limit Theorem** in transforming diverse sampling distributions toward normality. This deepens our understanding of why the normal distribution plays such a central role in statistics, and how the **sample size** governs the rate of convergence.
 
 ---
-
-###  Files and Deliverables
-
-* `clt_simulation.py` or `clt_simulation.ipynb` – Python code implementing the simulations.
-* Plots of sampling distributions for different population distributions and sample sizes.
-* This Markdown document (`clt_report.md`).
-
----
