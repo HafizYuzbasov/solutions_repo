@@ -106,7 +106,11 @@ plt.show()
 ![alt text](<PHYSICS EXERCISE.gif>) 
 ![alt text](<PHYSICS EXERCISE-1.gif>) 
 ![alt text](<PHYSICS EXERCISE-2.gif>) 
-![alt text](<PHYSICS EXERCISE-3.gif>)
+![alt text](image.png)
+![alt text](<PHYSICS EXERCISE-3.gif>) 
+![alt text](image-3.png)
+![alt text](image-2.png) 
+![alt text](image-4.png)
 ---
 
 ##  **Visualization Examples**
