@@ -146,7 +146,8 @@ def estimate_pi_buffon(num_needles, L=1.0, D=2.0):
 estimate_pi_buffon(100000)
 ```
 ![alt text](image-6.png) 
-![alt text](<PHYSICS EXERCISE-2.gif>)
+![alt text](<PHYSICS EXERCISE-2.gif>) 
+![alt text](image-7.png) 
 ---
 
 ###  Observations
