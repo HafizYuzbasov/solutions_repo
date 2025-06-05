@@ -111,10 +111,10 @@ $$
 
 | Quantity               | Value                                           |
 | ---------------------- | ----------------------------------------------- |
-| $\$L\$$                  | \$1.20 , \text{m} \pm 0.005 , \text{m}\$        |
-| $\$\overline{T}\_{10}\$$ | \$24.547 , \text{s} \pm 0.014 , \text{s}\$      |
-| $\$T\$$                  | \$2.4547 , \text{s} \pm 0.0014 , \text{s}\$     |
-| \$g\$                  | \$7.86 , \text{m/s}^2 \pm 0.03 , \text{m/s}^2\$ |
+| $\$L\$$                  | $\$1.20 , \text{m} \pm 0.005 , \text{m}\$$        |
+| $\$\overline{T}\_{10}\$$ | $\$24.547 , \text{s} \pm 0.014 , \text{s}\$$     |
+| $\$T\$$                  | $\$2.4547 , \text{s} \pm 0.0014 , \text{s}\$$     |
+| $\$g\$$                  | $\$7.86 , \text{m/s}^2 \pm 0.03 , \text{m/s}^2\$$ |
 
 ---
 
@@ -128,7 +128,7 @@ $$
    7.86 \, \text{m/s}^2
    $$
 
-   which is significantly lower than the accepted value of \$9.81 , \text{m/s}^2\$. Possible reasons:
+   which is significantly lower than the accepted value of $\$9.81 , \text{m/s}^2\$$. Possible reasons:
 
    * Air resistance or large amplitude effects (especially if the swing exceeded 15°).
    * Slight inaccuracies in measuring $\$L\$$ or timing $\$T\_{10}\$$.
