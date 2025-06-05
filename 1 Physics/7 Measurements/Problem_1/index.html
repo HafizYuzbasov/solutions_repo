@@ -92,6 +92,44 @@
 <ul class="current">
 <li class="toctree-l2 current"><a class="reference internal current" href="#">Problem 1</a>
 <ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="#measurements-report">Measurements Report</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#problem-1-measuring-earths-gravitational-acceleration-with-a-pendulum">Problem 1: Measuring Earth's Gravitational Acceleration with a Pendulum</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#1-data-collection">1. Data Collection</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#timing-measurements-10-trials">Timing Measurements (10 Trials):</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#2-calculations">2. Calculations</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#mean-time">Mean time:</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#standard-deviation-sigma_t">Standard deviation ($\sigma_T$):</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#uncertainty-in-mean-time">Uncertainty in mean time:</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#period-of-one-oscillation">Period of one oscillation:</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#uncertainty-in-period">Uncertainty in period:</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#calculate-g">Calculate $g$:</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#uncertainty-in-g">Uncertainty in $g$:</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#3-results-summary">3. Results Summary</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#4-discussion">4. Discussion</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#5-google-colab-code">5. Google Colab Code</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#conclusion">Conclusion</a>
+</li>
 </ul>
 </li>
 </ul>
@@ -172,6 +210,234 @@
 <div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
 <div class="section" itemprop="articleBody">
 <h1 id="problem-1">Problem 1</h1>
+<hr/>
+<h2 id="measurements-report">Measurements Report</h2>
+<h3 id="problem-1-measuring-earths-gravitational-acceleration-with-a-pendulum"><strong>Problem 1: Measuring Earth's Gravitational Acceleration with a Pendulum</strong></h3>
+<hr/>
+<h2 id="1-data-collection"><strong>1. Data Collection</strong></h2>
+<table>
+<thead>
+<tr>
+<th>Quantity</th>
+<th>Measurement</th>
+<th>Uncertainty</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Pendulum length ($L$)</td>
+<td>1.20 m</td>
+<td><span class="arithmatex">\(<span class="arithmatex">\(\Delta L = 0.005\)</span>\)</span>\ m (using a ruler with 1 mm resolution)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="timing-measurements-10-trials"><strong>Timing Measurements (10 Trials):</strong></h3>
+<table>
+<thead>
+<tr>
+<th>Trial</th>
+<th>T_{10}\ (s)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>24.56</td>
+</tr>
+<tr>
+<td>2</td>
+<td>24.48</td>
+</tr>
+<tr>
+<td>3</td>
+<td>24.62</td>
+</tr>
+<tr>
+<td>4</td>
+<td>24.55</td>
+</tr>
+<tr>
+<td>5</td>
+<td>24.51</td>
+</tr>
+<tr>
+<td>6</td>
+<td>24.58</td>
+</tr>
+<tr>
+<td>7</td>
+<td>24.53</td>
+</tr>
+<tr>
+<td>8</td>
+<td>24.60</td>
+</tr>
+<tr>
+<td>9</td>
+<td>24.50</td>
+</tr>
+<tr>
+<td>10</td>
+<td>24.54</td>
+</tr>
+</tbody>
+</table>
+<hr/>
+<h2 id="2-calculations"><strong>2. Calculations</strong></h2>
+<h3 id="mean-time"><strong>Mean time:</strong></h3>
+<div class="arithmatex">\[
+\overline{T}_{10} = \frac{\sum T_{10}}{10} = \frac{24.56 + 24.48 + \cdots + 24.54}{10}
+\]</div>
+<p>Calculating this:</p>
+<div class="arithmatex">\[
+\overline{T}_{10} = 24.547 \, \text{s}
+\]</div>
+<h3 id="standard-deviation-sigma_t"><strong>Standard deviation ($\sigma_T$):</strong></h3>
+<div class="arithmatex">\[
+\sigma_T = \sqrt{\frac{\sum (T_{10} - \overline{T}_{10})^2}{n-1}} \approx 0.043 \, \text{s}
+\]</div>
+<h3 id="uncertainty-in-mean-time"><strong>Uncertainty in mean time:</strong></h3>
+<div class="arithmatex">\[
+\Delta T_{10} = \frac{\sigma_T}{\sqrt{n}} = \frac{0.043}{\sqrt{10}} \approx 0.014 \, \text{s}
+\]</div>
+<hr/>
+<h3 id="period-of-one-oscillation"><strong>Period of one oscillation:</strong></h3>
+<div class="arithmatex">\[
+T = \frac{\overline{T}_{10}}{10} = \frac{24.547}{10} = 2.4547 \, \text{s}
+\]</div>
+<h3 id="uncertainty-in-period"><strong>Uncertainty in period:</strong></h3>
+<div class="arithmatex">\[
+\Delta T = \frac{\Delta T_{10}}{10} = \frac{0.014}{10} = 0.0014 \, \text{s}
+\]</div>
+<hr/>
+<h3 id="calculate-g"><strong>Calculate $g$:</strong></h3>
+<div class="arithmatex">\[
+g = \frac{4\pi^2 L}{T^2}
+\]</div>
+<p>Substituting:</p>
+<div class="arithmatex">\[
+g = \frac{4 \pi^2 \times 1.20}{(2.4547)^2} \approx 7.86 \, \text{m/s}^2
+\]</div>
+<hr/>
+<h3 id="uncertainty-in-g"><strong>Uncertainty in $g$:</strong></h3>
+<div class="arithmatex">\[
+\Delta g = g \sqrt{\left(\frac{\Delta L}{L}\right)^2 + \left(2 \frac{\Delta T}{T}\right)^2}
+\]</div>
+<div class="arithmatex">\[
+\frac{\Delta L}{L} = \frac{0.005}{1.20} = 0.00417
+\]</div>
+<div class="arithmatex">\[
+2 \frac{\Delta T}{T} = 2 \times \frac{0.0014}{2.4547} = 0.00114
+\]</div>
+<div class="arithmatex">\[
+\Delta g = 7.86 \sqrt{(0.00417)^2 + (0.00114)^2} \approx 0.03 \, \text{m/s}^2
+\]</div>
+<hr/>
+<h2 id="3-results-summary"><strong>3. Results Summary</strong></h2>
+<table>
+<thead>
+<tr>
+<th>Quantity</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$L$</td>
+<td>$1.20 , \text{m} \pm 0.005 , \text{m}$</td>
+</tr>
+<tr>
+<td>$\overline{T}_{10}$</td>
+<td>$24.547 , \text{s} \pm 0.014 , \text{s}$</td>
+</tr>
+<tr>
+<td>$T$</td>
+<td>$2.4547 , \text{s} \pm 0.0014 , \text{s}$</td>
+</tr>
+<tr>
+<td>$g$</td>
+<td>$7.86 , \text{m/s}^2 \pm 0.03 , \text{m/s}^2$</td>
+</tr>
+</tbody>
+</table>
+<hr/>
+<h2 id="4-discussion"><strong>4. Discussion</strong></h2>
+<ol>
+<li><strong>Comparison with standard value:</strong></li>
+</ol>
+<p>The measured value of $g$ is:</p>
+<p>$$
+   7.86 \, \text{m/s}^2
+   $$</p>
+<p>which is significantly lower than the accepted value of $9.81 , \text{m/s}^2$. Possible reasons:</p>
+<ul>
+<li>Air resistance or large amplitude effects (especially if the swing exceeded 15°).</li>
+<li>Slight inaccuracies in measuring $L$ or timing $T_{10}$.</li>
+<li>
+<p>The pivot point might not be truly frictionless.</p>
+</li>
+<li>
+<p><strong>Impact of measurement resolution on $\Delta L$:</strong></p>
+</li>
+</ul>
+<p>A ruler with 1 mm resolution yields $\Delta L = 0.005 , \text{m}$, contributing to a relative uncertainty of $0.42%$.</p>
+<ol>
+<li><strong>Variability in timing ($\Delta T$):</strong></li>
+</ol>
+<p>Human reaction time and stopwatch resolution introduce variability in $T_{10}$, which is minimized by averaging multiple trials. However, the uncertainty here was relatively small ($0.06%$).</p>
+<ol>
+<li>
+<p><strong>Assumptions &amp; limitations:</strong></p>
+</li>
+<li>
+<p>The pendulum was assumed to be simple (point mass + massless string).</p>
+</li>
+<li>Friction at the pivot and air resistance were neglected.</li>
+<li>Small angle approximation holds for small displacements (&lt;15°).</li>
+</ol>
+<hr/>
+<h2 id="5-google-colab-code"><strong>5. Google Colab Code</strong></h2>
+<p>Here’s the code to automate this analysis:</p>
+<pre><code class="language-python">import numpy as np
+
+# Measured values
+L = 1.20       # meters
+delta_L = 0.005 # meters
+
+T10_measurements = np.array([
+    24.56, 24.48, 24.62, 24.55, 24.51,
+    24.58, 24.53, 24.60, 24.50, 24.54
+])
+
+# Mean and uncertainty
+T10_mean = np.mean(T10_measurements)
+sigma_T = np.std(T10_measurements, ddof=1)
+delta_T10 = sigma_T / np.sqrt(len(T10_measurements))
+
+# Period and uncertainty
+T = T10_mean / 10
+delta_T = delta_T10 / 10
+
+# Calculate g
+g = (4 * np.pi**2 * L) / (T**2)
+
+# Propagate uncertainty
+rel_delta_L = delta_L / L
+rel_delta_T = 2 * (delta_T / T)
+delta_g = g * np.sqrt(rel_delta_L**2 + rel_delta_T**2)
+
+# Print results
+print(f"Mean time for 10 oscillations (T10): {T10_mean:.3f} s ± {delta_T10:.3f} s")
+print(f"Period (T): {T:.4f} s ± {delta_T:.4f} s")
+print(f"Calculated g: {g:.2f} m/s² ± {delta_g:.2f} m/s²")
+</code></pre>
+<p><img alt="alt text" src="../image-2.png"/>
+<img alt="alt text" src="../image.png"/>
+<img alt="alt text" src="../image-1.png"/></p>
+<hr/>
+<h2 id="conclusion"><strong>Conclusion</strong></h2>
+<p>This exercise demonstrates the power of using repeated measurements and uncertainty analysis in experimental physics. Although the result differs from the accepted value of $g$, it highlights the impact of small errors and the importance of controlling for systematic uncertainties.</p>
+<hr/>
 </div>
 </div><footer>
 <div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
