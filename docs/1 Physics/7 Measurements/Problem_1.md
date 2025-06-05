@@ -191,7 +191,9 @@ print(f"Calculated g: {g:.2f} m/s² ± {delta_g:.2f} m/s²")
 ![alt text](image-2.png)
 ![alt text](<PHYSICS EXERCISE-1.gif>)
 ![alt text](image.png) 
+![alt text](<PHYSICS EXERCISE-2.gif>)
 ![alt text](image-1.png) 
+![alt text](<PHYSICS EXERCISE-3.gif>)
 
 ---
 
