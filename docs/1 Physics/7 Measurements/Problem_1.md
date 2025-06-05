@@ -12,7 +12,7 @@
 
 | Quantity                | Measurement | Uncertainty                                                 |
 | ----------------------- | ----------- | ----------------------------------------------------------- |
-| Pendulum length (\$L\$) | 1.20 m      | $$\Delta L = 0.005$$\ m (using a ruler with 1 mm resolution) |
+| Pendulum length $(\$L\$)$ | 1.20 m      | $$\Delta L = 0.005$$\ m (using a ruler with 1 mm resolution) |
 
 ### **Timing Measurements (10 Trials):**
 
@@ -111,9 +111,9 @@ $$
 
 | Quantity               | Value                                           |
 | ---------------------- | ----------------------------------------------- |
-| \$L\$                  | \$1.20 , \text{m} \pm 0.005 , \text{m}\$        |
-| \$\overline{T}\_{10}\$ | \$24.547 , \text{s} \pm 0.014 , \text{s}\$      |
-| \$T\$                  | \$2.4547 , \text{s} \pm 0.0014 , \text{s}\$     |
+| $\$L\$$                  | \$1.20 , \text{m} \pm 0.005 , \text{m}\$        |
+| $\$\overline{T}\_{10}\$$ | \$24.547 , \text{s} \pm 0.014 , \text{s}\$      |
+| $\$T\$$                  | \$2.4547 , \text{s} \pm 0.0014 , \text{s}\$     |
 | \$g\$                  | \$7.86 , \text{m/s}^2 \pm 0.03 , \text{m/s}^2\$ |
 
 ---
@@ -131,16 +131,16 @@ $$
    which is significantly lower than the accepted value of \$9.81 , \text{m/s}^2\$. Possible reasons:
 
    * Air resistance or large amplitude effects (especially if the swing exceeded 15°).
-   * Slight inaccuracies in measuring \$L\$ or timing \$T\_{10}\$.
+   * Slight inaccuracies in measuring $\$L\$$ or timing $\$T\_{10}\$$.
    * The pivot point might not be truly frictionless.
 
 2. **Impact of measurement resolution on \$\Delta L\$:**
 
-   A ruler with 1 mm resolution yields \$\Delta L = 0.005 , \text{m}\$, contributing to a relative uncertainty of \$0.42%\$.
+   A ruler with 1 mm resolution yields $\\Delta L = 0.005 , \text{m}\$$, contributing to a relative uncertainty of \$0.42%\$.
 
 3. **Variability in timing (\$\Delta T\$):**
 
-   Human reaction time and stopwatch resolution introduce variability in \$T\_{10}\$, which is minimized by averaging multiple trials. However, the uncertainty here was relatively small (\$0.06%\$).
+   Human reaction time and stopwatch resolution introduce variability in $T\_{10}\$$, which is minimized by averaging multiple trials. However, the uncertainty here was relatively small (\$0.06%\$).
 
 4. **Assumptions & limitations:**
 
